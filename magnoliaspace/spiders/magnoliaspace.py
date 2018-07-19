@@ -29,16 +29,16 @@ class MagnoliaspaceSpider(scrapy.Spider):
             '//div[@class="foto"]/a/@href'
         ).extract_first())
         item['category'] = response.xpath(
-            '//div[@class="section"]/text()"'
+            '//div[@class="section"]/text()'
         ).extract_first()
         item['productname'] = response.xpath(
-            '//div[@class="tit"]/text()"'
+            '//div[@class="tit"]/text()'
         ).extract_first()
         item['sku'] = response.xpath(
-            '//div[@class="cod"]/text()"'
+            '//div[@class="cod"]/text()'
         ).extract_first()
         item['prdescription'] = response.xpath(
-            '//div[@class="tabbing"]/div[@class="s-tab"]/div[@class="content"]/p/text()"'
+            '//div[@class="tabbing"]/div[@class="s-tab"]/div[@class="content"]/p/text()'
         ).extract()
         yield item
 
