@@ -13,14 +13,19 @@ class MagnoliaspaceSpider(scrapy.Spider):
         prspan = response.xpath(
             '//div[@class="coldx"]/div[@class="contprod"]/span/div[@class="s-prod"]'
         )
-        dati = {}
-        dati['pr_urls']=[]
-        for prod in prspan:
-            dati['pr_urls'].append(prod.xpath('.//div[@class="contfoto"]/a/@href').extract_first())
-        yield dati
+        #dati = {}
+        #dati['pr_urls']=[]
         #for prod in prspan:
-            #linktoprod = prod.xpath('.//div[@class="contfoto"]/a/@href').extract_first()
-            #yield scrapy.Request(response.urljoin(linktoprod), callback=self.parse_prdetail)
-            #yield linktoprod
+            #dati['pr_urls'].append(prod.xpath('.//div[@class="contfoto"]/a/@href').extract_first())
+        #yield dati
+        for prod in prspan:
+            linktoprod = prod.xpath('.//div[@class="contfoto"]/a/@href').extract_first()
+            yield scrapy.Request(response.urljoin(linktoprod), callback=self.parse_prdetail)
+
+    def parse_prdetail(self, response):
+        item = {}
+        item['photo'] = response.urljoin(response.xpath(
+            '//div[@class="foto"]/a/@href'
+        ).extract_first())
 
 
