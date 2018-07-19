@@ -38,8 +38,8 @@ class MagnoliaspaceSpider(scrapy.Spider):
             '//div[@class="cod"]/text()'
         ).extract_first()
         item['prdescription'] = response.xpath(
-            '//div[@class="tabbing"]/div[@class="s-tab"]/div[@class="content"]/p/text()'
-        ).extract_first()
+            '//div[@class="content"]/p/text()'
+        ).extract()
         yield item
 
 
