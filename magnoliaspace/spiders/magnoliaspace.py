@@ -27,5 +27,6 @@ class MagnoliaspaceSpider(scrapy.Spider):
         item['photo'] = response.urljoin(response.xpath(
             '//div[@class="foto"]/a/@href'
         ).extract_first())
+        yield item
 
 
