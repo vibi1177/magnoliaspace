@@ -13,7 +13,7 @@ class MagnoliaspaceSpider(scrapy.Spider):
         prspan = response.xpath(
             '//div[@class="coldx"]/div[@class="contprod"]/span/div[@class="s-prod"]'
         )
-        yield prspan.extract()
+        yield prspan[0].extract()
         #for prod in prspan:
             #linktoprod = prod.xpath('.//div[@class="contfoto"]/a/@href').extract_first()
             #yield scrapy.Request(response.urljoin(linktoprod), callback=self.parse_prdetail)
