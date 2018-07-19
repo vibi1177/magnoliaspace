@@ -11,7 +11,7 @@ class MagnoliaspaceSpider(scrapy.Spider):
 
     def parse(self, response):
         prspan = response.xpath(
-            '//div[@class="coldx"]/div[@class="contprod"]/div[@class="contcategory"]/span/div[@class="s-prod"]'
+            '//div[@class="coldx"]/div[@class="contprod"]/span/div[@class="s-prod"]'
         )
         for prod in prspan:
             linktoprod = prod.xpath('.//div[@class="contfoto"]/a/@href').extract_first()
