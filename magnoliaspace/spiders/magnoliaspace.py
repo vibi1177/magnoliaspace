@@ -43,6 +43,7 @@ class MagnoliaspaceSpider(scrapy.Spider):
         item['price'] = response.xpath(
             '//span[@class="finale"]/text()'
         ).extract_first()
+        item['prodlink'] = response.url
         yield item
 
 
