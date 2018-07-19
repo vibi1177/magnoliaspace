@@ -24,9 +24,22 @@ class MagnoliaspaceSpider(scrapy.Spider):
 
     def parse_prdetail(self, response):
         item = {}
+
         item['photo'] = response.urljoin(response.xpath(
             '//div[@class="foto"]/a/@href'
         ).extract_first())
+        item['category'] = response.xpath(
+            '//div[@class="info"]/form[@id="addCart"]/div[@class="section]/text()"'
+        ).extract_first()
+        item['productname'] = response.xpath(
+            '//div[@class="info"]/form[@id="addCart"]/div[@class="tit]/text()"'
+        ).extract_first()
+        item['sku'] = response.xpath(
+            '//div[@class="info"]/form[@id="addCart"]/div[@class="cod]/text()"'
+        ).extract_first()
+        item['prdescription'] = response.xpath(
+            '//div[@class="info"]/form[@id="addCart"]/div[@class="teabbing"]/div[@class="s-tab"]/div[@class="content"]/p/text()"'
+        ).extract()
         yield item
 
 
