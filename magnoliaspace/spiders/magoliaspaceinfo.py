@@ -18,7 +18,7 @@ class MagnoliaspaceinfoSpider(scrapy.Spider):
         for elem in divcol:
             item['title'] = response.css('title::text').extract_first()
             item['row1'] = elem.xpath(
-            './/div[@class="tit"]'
+            './/div[@class="tit"]/text()'
             ).extract_first()
             item['row2'] =  elem.xpath(
             './/p'
