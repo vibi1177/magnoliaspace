@@ -11,15 +11,16 @@ class MagnoliaspaceinfoSpider(scrapy.Spider):
 
     def parse(self, response):
         item  = {}
-        item['title'] = response.css('title::text').extract_first()
+        
         divcol = response.xpath(
             '//div[@class="col50 contact"]'
         )
         for elem in divcol:
+            item['title'] = response.css('title::text').extract_first()
             item['row1'] = elem.xpath(
             './/div[@class="tit"]/text()'
             ).extract_first()
             item['row2'] =  elem.xpath(
-            './/div[@class="tit"]/p/text()'
+            './/p/text()'
             ).extract()
-        yield item
+            yield item
